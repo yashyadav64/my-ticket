@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Ticket Booking | GD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: #f8f8f8;
+    }
+
+    header {
+      background: #fff;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #d32f2f;
+    }
+
+    .nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #d32f2f, #ff6f61);
+      color: #fff;
+      padding: 60px 30px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .search-box {
+      background: #fff;
+      margin: -40px auto 30px;
+      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-box input[type="text"],
+    .search-box input[type="date"] {
+      padding: 10px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toggle input[type="checkbox"] {
+      width: 40px;
+      height: 20px;
+      appearance: none;
+      background: #ccc;
+      border-radius: 10px;
+      position: relative;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .toggle input[type="checkbox"]::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .toggle input[type="checkbox"]:checked {
+      background: #4caf50;
+    }
+
+    .toggle input[type="checkbox"]:checked::before {
+      transform: translateX(20px);
+    }
+
+    .btn {
+      padding: 12px 25px;
+      background: #d32f2f;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #b71c1c;
+    }
+
+    .offers {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .offers h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .offers p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    @media screen and (max-width: 600px) {
+      .search-box {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box input,
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>redBus Clone</h1>
+    <div class="nav">
+      <a href="#">Bus Tickets</a>
+      <a href="#">Train Tickets</a>
+      <a href="#">Bookings</a>
+      <a href="#">Account</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>India's No. 1 Online Bus Ticket Booking Site</h2>
+  </section>
+
+  <div class="search-box">
+    <input type="text" placeholder="From">
+    <input type="text" placeholder="To">
+    <input type="date" value="2025-07-19">
+    
+    <button class="btn" onclick="setDateToday()">Today</button>
+    <button class="btn" onclick="setDateTomorrow()">Tomorrow</button>
+
+    <div class="toggle">
+      <label>Booking for Women</label>
+      <input type="checkbox">
+    </div>
+
+    <button class="btn">Search Buses</button>
+  </div>
+
+  <div class="offers">
+    <h3>🎉 Book Trains for Festivals</h3>
+    <p>Get ₹100 off using code <strong>FESTIVE</strong></p>
+    <button class="btn">Book Trains Now</button>
+  </div>
+
+  <script>
+    function setDateToday() {
+      const today = new Date().toISOString().split('T')[0];
+      document.querySelector('input[type="date"]').value = today;
+    }
+
+    function setDateTomorrow() {
+      const t = new Date();
+      t.setDate(t.getDate() + 1);
+      document.querySelector('input[type="date"]').value = t.toISOString().split('T')[0];
+    }
+  </script>
+
+</body>
+</html>

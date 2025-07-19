@@ -284,6 +284,131 @@
   color: #555;
   margin-top: 5px;
 }
+h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .filters button {
+      padding: 8px 20px;
+      border: none;
+      background: #eee;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    .filters button.active {
+      background: #000;
+      color: white;
+    }
+
+    .offers-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .offer-card {
+      width: 260px;
+      background: #ffe5e5;
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .offer-card.bus { background: #ffe5e5; }
+    .offer-card.train { background: #ffeef1; }
+
+    .tag {
+      background: #b69f9f;
+      color: white;
+      font-size: 13px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .offer-title {
+      font-size: 17px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .validity {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 12px;
+    }
+
+    .coupon {
+      background: white;
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .coupon::before {
+      content: '🏷️';
+    }
+
+    .offer-img {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .offer-img img {
+      width: 100px;
+      height: auto;
+    }
+     .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      margin-left: 20px;
+      padding-left: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    li strong {
+      font-weight: 600;
+    }
 
   </style>
 </head>
@@ -421,6 +546,72 @@
     </div>
   </div>
 </section>
+
+<h2>Offers for you</h2>
+
+  <div class="filters">
+    <button class="active">All</button>
+    <button>Bus</button>
+    <button>Train</button>
+  </div>
+
+  <div class="offers-container">
+    <div class="offer-card bus">
+      <div class="tag">Bus</div>
+      <div class="offer-title">Save up to Rs 250 on bus tickets</div>
+      <div class="validity">Valid till 31 Jul</div>
+      <div class="coupon">FIRST</div>
+      <div class="offer-img"><img src="https://img.icons8.com/color/100/bus.png" alt="Bus"></div>
+    </div>
+
+    <div class="offer-card bus">
+      <div class="tag">Bus</div>
+      <div class="offer-title">Save upto Rs 500 with ICICI Netbanking</div>
+      <div class="validity">Valid till 31 Aug</div>
+      <div class="coupon">ICICI500</div>
+      <div class="offer-img"><img src="https://www.icicibank.com/content/dam/icicibank/india/managed-assets/images/blog/how-to-create-credit-card-pin-online-m.webp" alt="ICICI Bank"></div>
+    </div>
+
+    <div class="offer-card train">
+      <div class="tag">Train</div>
+      <div class="offer-title">Get Rs 60 off on train tickets</div>
+      <div class="validity">Valid till 31 Jul</div>
+      <div class="coupon">SUPERB60</div>
+      <div class="offer-img"><img src="https://img.icons8.com/color/100/train.png" alt="Train"></div>
+    </div>
+
+    <div class="offer-card train">
+      <div class="tag">Train</div>
+      <div class="offer-title">ZERO Convenience FEE</div>
+      <div class="validity">Valid till 31 Jul</div>
+      <div class="coupon">NOFEE</div>
+      <div class="offer-img"><img src="https://img.icons8.com/color/100/piggy-bank.png" alt="Piggy Bank"></div>
+    </div>
+  </div>
+
+
+    <div class="container">
+    <h2>Online Bus Ticket Booking on redBus</h2>
+
+    <p>redBus is India’s most trusted bus ticket booking platform. The platform offers an easy-to-use online bus booking service with over 56+ million satisfied customers. Partnering with over 5200+ bus operators, redBus offers affordable prices and various bus types to choose from. Also, provides secure payment options and exclusive offers for a smooth and convenient booking experience.</p>
+
+    <p>Planning a trip with RTC, Government bus operators like APSRTC, TGSRTC, KSRTC (Kerala), RSRTC or private operators like VRL and Orange Travels? redBus offers easy access to lakhs of routes and a wide range of bus types such as AC or Non-AC, Sleeper, Seater, Volvo and more. With a wide range of bus options and services, redBus ensures a reliable and comfortable journey for every passenger.</p>
+
+    <h3>How to Book Bus Tickets on redBus?</h3>
+    <p>Booking a bus ticket online on the redBus app or website is very simple. Follow the stepwise process for bus booking on redBus.</p>
+
+    <ul>
+      <li><strong>Enter Travel Details:</strong> Enter your source, destination & travel date to check the top-rated bus services available.</li>
+      <li><strong>Search Buses:</strong> Filter bus type, duration, bus timings, boarding and dropping point, number of seats available, user ratings & amenities for your desired route.</li>
+      <li><strong>Choose Buses:</strong> Select your preferred seat, boarding and dropping points. Once selected, check the ticket price details and proceed to pay.</li>
+      <li><strong>Enter Passenger Details:</strong> Fill in the passenger information and contact details.</li>
+      <li><strong>Payment:</strong> Once you fill in the information, click on “Proceed” to pay to complete the payment process.</li>
+      <li><strong>Ticket Confirmation:</strong> After the payment process, receive the bus ticket confirmation on your registered email ID or mobile number.</li>
+    </ul>
+
+    <p>With redBus, get assured safe & secure payment methods and guaranteed travel with the best seat and bus operator of your choice at an affordable bus ticket price.</p>
+  </div>
+
 <footer>
   <p>&copy; 2025 TravelGo. Designed by Yash Yadav</p>
 </footer>

@@ -1,213 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bus Ticket Booking | GD</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TravelGo - Book Buses</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
-
     body {
-      background: #f8f8f8;
+      background-color: #f2f7fb;
+      color: #333;
     }
 
     header {
-      background: #fff;
-      padding: 15px 30px;
+      background: linear-gradient(to right, #007bff, #00c6ff);
+      color: white;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      align-items: center;
+      padding: 16px 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     header h1 {
-      font-size: 24px;
-      color: #d32f2f;
+      font-size: 28px;
+      font-weight: bold;
     }
-
-    .nav {
+    nav {
       display: flex;
       gap: 20px;
     }
-
-    .nav a {
+    nav a {
+      color: white;
       text-decoration: none;
-      color: #333;
       font-weight: 500;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #007bff;
+        flex-direction: column;
+        width: 100%;
+        padding: 20px;
+      }
+      nav.active {
+        display: flex;
+      }
+      .menu-toggle {
+        display: flex;
+      }
     }
 
     .hero {
-      background: linear-gradient(to right, #d32f2f, #ff6f61);
-      color: #fff;
-      padding: 60px 30px;
-      text-align: center;
+      background: url('https://etimg.etb2bimg.com/thumb/msid-108478658,imgsize-101699,width-1200,height=627,overlay-etauto,resizemode-75/aftermarket/67-of-online-bus-ticket-bookings-in-india-come-from-non-metros-redbus-report.jpg') center center/cover no-repeat;
+      height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 40px;
+      color: white;
+      background-blend-mode: overlay;
+      background-color: rgba(0, 0, 0, 0.4);
     }
-
     .hero h2 {
-      font-size: 36px;
-      font-weight: bold;
+      font-size: 42px;
       margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 18px;
+      opacity: 0.9;
     }
 
     .search-box {
-      background: #fff;
-      margin: -40px auto 30px;
-      padding: 20px;
-      width: 90%;
+      background: white;
+      padding: 25px;
       max-width: 900px;
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      margin: -60px auto 40px;
       display: flex;
       flex-wrap: wrap;
       gap: 15px;
-      align-items: center;
-      justify-content: center;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     }
-
-    .search-box input[type="text"],
-    .search-box input[type="date"] {
-      padding: 10px;
-      width: 200px;
+    .search-box select, .search-box input[type="date"] {
+      flex: 1 1 180px;
+      padding: 12px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      outline: none;
+      font-size: 15px;
     }
-
-    .toggle {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .toggle input[type="checkbox"] {
-      width: 40px;
-      height: 20px;
-      appearance: none;
-      background: #ccc;
-      border-radius: 10px;
-      position: relative;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .toggle input[type="checkbox"]::before {
-      content: '';
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      position: absolute;
-      top: 1px;
-      left: 1px;
-      border-radius: 50%;
-      transition: 0.3s;
-    }
-
-    .toggle input[type="checkbox"]:checked {
-      background: #4caf50;
-    }
-
-    .toggle input[type="checkbox"]:checked::before {
-      transform: translateX(20px);
-    }
-
-    .btn {
-      padding: 12px 25px;
-      background: #d32f2f;
-      color: #fff;
+    .search-box button {
+      padding: 12px 30px;
+      background: #007bff;
+      color: white;
+      font-size: 15px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s;
+      transition: background 0.3s ease;
+    }
+    .search-box button:hover {
+      background: #005dc1;
     }
 
-    .btn:hover {
-      background: #b71c1c;
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 50px 20px;
+      background: #fff;
     }
-
-    .offers {
+    .services div {
       text-align: center;
-      padding: 30px;
+      max-width: 220px;
+      margin: 20px;
     }
-
-    .offers h3 {
-      font-size: 20px;
+    .services img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+    .services h3 {
+      font-size: 18px;
       margin-bottom: 10px;
     }
-
-    .offers p {
-      font-size: 16px;
+    .services p {
+      font-size: 14px;
       color: #555;
     }
 
-    @media screen and (max-width: 600px) {
-      .search-box {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .search-box input,
-      .btn {
-        width: 100%;
-      }
+    footer {
+      background: #343a40;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 15px;
     }
+    .services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.services div {
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.services img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+.services h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.services p {
+  font-size: 14px;
+  color: #666;
+}
+.festival-booking {
+  background: #f9f9f9;
+  padding: 30px 20px;
+  margin: 40px auto;
+}
+
+.festival-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #f5f5f5;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  gap: 20px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.left h3 {
+  margin-bottom: 5px;
+}
+
+.festive-code {
+  color: green;
+  font-weight: bold;
+}
+
+.months {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  justify-content: center;
+}
+
+.month-card {
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  padding: 10px 20px;
+  text-align: center;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.month-card.aug {
+  border-color: #f87171;
+  color: #f43f5e;
+}
+
+.month-card.sep {
+  border-color: #60a5fa;
+  color: #3b82f6;
+}
+
+.fest {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.book-btn {
+  flex: 1;
+  text-align: right;
+}
+
+.book-btn button {
+  background: #ffe0e0;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.partner {
+  font-size: 12px;
+  color: #555;
+  margin-top: 5px;
+}
+
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>redBus Clone</h1>
-    <div class="nav">
-      <a href="#">Bus Tickets</a>
-      <a href="#">Train Tickets</a>
-      <a href="#">Bookings</a>
-      <a href="#">Account</a>
-    </div>
-  </header>
-
-  <section class="hero">
-    <h2>India's No. 1 Online Bus Ticket Booking Site</h2>
-  </section>
-
-  <div class="search-box">
-    <input type="text" placeholder="From">
-    <input type="text" placeholder="To">
-    <input type="date" value="2025-07-19">
-    
-    <button class="btn" onclick="setDateToday()">Today</button>
-    <button class="btn" onclick="setDateTomorrow()">Tomorrow</button>
-
-    <div class="toggle">
-      <label>Booking for Women</label>
-      <input type="checkbox">
-    </div>
-
-    <button class="btn">Search Buses</button>
+<header>
+  <h1>TravelGo</h1>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
+  <nav id="navbar">
+    <a href="#">Home</a>
+    <a href="#">Book</a>
+    <a href="#">Offers</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
 
-  <div class="offers">
-    <h3>🎉 Book Trains for Festivals</h3>
-    <p>Get ₹100 off using code <strong>FESTIVE</strong></p>
-    <button class="btn">Book Trains Now</button>
+<section class="hero">
+  <h2>Book Your Bus Easily</h2>
+  <p>Fast • Safe • Affordable</p>
+</section>
+
+<section class="search-box">
+  <select>
+    <option value="">From</option>
+    <option value="Indore">Indore</option>
+    <option value="Bhopal">Bhopal</option>
+    <option value="Ujjain">Ujjain</option>
+    <option value="Gwalior">Gwalior</option>
+    <option value="Jabalpur">Jabalpur</option>
+    <option value="Rewa">Rewa</option>
+    <option value="Ratlam">Ratlam</option>
+    <option value="Mhow">Mhow</option>
+    <option value="Shivpuri">Shivpuri</option>
+    <option value="Sendhwa">Sendhwa</option>
+    <option value="Khargone">Khargone</option>
+    <option value="Burhanpur">Burhanpur</option>
+    <option value="Betul">Betul</option>
+    <option value="Sehore">Sehore</option>
+    <option value="Dewas">Dewas</option>
+    <option value="Khandwa">Khandwa</option>
+    <option value="Chhindwara">Chhindwara</option>
+    <option value="Katni">Katni</option>
+    <option value="Vidisha">Vidisha</option>
+    <option value="Panna">Panna</option>
+    <option value="Neemuch">Neemuch</option>
+    <option value="Mandsaur">Mandsaur</option>
+    <option value="Barwani">Barwani</option>
+    <option value="Shajapur">Shajapur</option>
+    <option value="Narsinghpur">Narsinghpur</option>
+    <option value="Local Village">Local Village</option>
+  </select>
+
+  <select>
+    <option value="">To</option>
+    <option value="Indore">Indore</option>
+    <option value="Bhopal">Bhopal</option>
+    <option value="Ujjain">Ujjain</option>
+    <option value="Gwalior">Gwalior</option>
+    <option value="Jabalpur">Jabalpur</option>
+    <option value="Rewa">Rewa</option>
+    <option value="Ratlam">Ratlam</option>
+    <option value="Mhow">Mhow</option>
+    <option value="Shivpuri">Shivpuri</option>
+    <option value="Sendhwa">Sendhwa</option>
+    <option value="Khargone">Khargone</option>
+    <option value="Burhanpur">Burhanpur</option>
+    <option value="Betul">Betul</option>
+    <option value="Sehore">Sehore</option>
+    <option value="Dewas">Dewas</option>
+    <option value="Khandwa">Khandwa</option>
+    <option value="Chhindwara">Chhindwara</option>
+    <option value="Katni">Katni</option>
+    <option value="Vidisha">Vidisha</option>
+    <option value="Panna">Panna</option>
+    <option value="Neemuch">Neemuch</option>
+    <option value="Mandsaur">Mandsaur</option>
+    <option value="Barwani">Barwani</option>
+    <option value="Shajapur">Shajapur</option>
+    <option value="Narsinghpur">Narsinghpur</option>
+    <option value="Village Destination">Village Destination</option>
+  </select>
+
+  <input type="date" />
+  <button>Search Buses</button>
+</section>
+
+<section class="services">
+  <div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfQc1pfxG_Mm9-tYQ12eovk5Ut9DV3tLYzOfIY7Y5Zd56OMZnlchsReQkwD9NmMMw4oDU&usqp=CAU" alt="Offers">
+    <h3>Top Deals</h3>
+    <p>Get flat ₹100 off on your first booking!</p>
   </div>
+  <div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ5eYZsIS0IvJcL-F06-JrnarYNQQdbrBbeA&s" alt="Insurance">
+    <h3>Insurance Cover</h3>
+    <p>Insure your journey starting ₹10 only.</p>
+  </div>
+  <div>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSjkXzCj6ZTIDfRlq6UfUsqjNj2JSmw32lSQ&s" alt="Support">
+    <h3>24x7 Help</h3>
+    <p>Support available even during midnight.</p>
+  </div>
+</section>
 
-  <script>
-    function setDateToday() {
-      const today = new Date().toISOString().split('T')[0];
-      document.querySelector('input[type="date"]').value = today;
-    }
 
-    function setDateTomorrow() {
-      const t = new Date();
-      t.setDate(t.getDate() + 1);
-      document.querySelector('input[type="date"]').value = t.toISOString().split('T')[0];
-    }
-  </script>
+<section class="festival-booking">
+  <div class="festival-container">
+    <div class="left">
+      <img src="https://cdn-icons-png.flaticon.com/512/2963/2963875.png" width="50" />
+      <div>
+        <h3>Book trains for festivals</h3>
+        <p>Book now to get confirmed ticket</p>
+        <p><strong>Get ₹100 off</strong> using code <span class="festive-code">FESTIVE</span></p>
+      </div>
+    </div>
+    <div class="months">
+      <div class="month-card aug">
+        <p><strong>Aug</strong></p>
+        <p class="fest">Raksha Bandhan</p>
+      </div>
+      <div class="month-card sep">
+        <p><strong>Sep</strong></p>
+        <p class="fest">Teja Dashmi</p>
+      </div>
+    </div>
+    <div class="book-btn">
+      <button>
+        🚆 Book trains now
+      </button>
+      <p class="partner">Authorised IRCTC partner</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>&copy; 2025 TravelGo. Designed by Yash Yadav</p>
+</footer>
 
+<script>
+  function toggleMenu() {
+    document.getElementById('navbar').classList.toggle('active');
+  }
+</script>
 </body>
 </html>

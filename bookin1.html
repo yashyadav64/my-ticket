@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus Booking - TravelGo</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 90%;
+      max-width: 500px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Bus Booking Form</h2>
+    <form action="customer-panel.html" method="GET">
+      <input type="text" placeholder="Full Name" name="name" required />
+      <input type="text" placeholder="Mobile Number" name="mobile" required />
+      <input type="text" placeholder="From" name="from" required />
+      <input type="text" placeholder="To" name="to" required />
+      <input type="date" name="date" required />
+      <select name="busType">
+        <option value="AC">AC</option>
+        <option value="Non-AC">Non-AC</option>
+        <option value="Sleeper">Sleeper</option>
+      </select>
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </div>
+</body>
+</html>

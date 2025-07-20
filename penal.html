@@ -2,83 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Customer Panel - TravelGo</title>
+  <title>Admin Panel - Bus Bookings</title>
   <style>
     body {
       font-family: Arial;
-      background: #e9ecef;
+      background: #eef2f7;
       margin: 0;
-    }
-    .panel {
-      max-width: 600px;
-      background: #fff;
-      margin: 40px auto;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #ccc;
     }
     h2 {
       text-align: center;
-      color: #007bff;
+      color: #333;
     }
-    .info {
-      margin: 20px 0;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+      box-shadow: 0 0 10px #ccc;
     }
-    .info label {
-      font-weight: bold;
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
     }
-    .info p {
-      margin: 5px 0;
-    }
-    .actions button {
-      padding: 10px 20px;
-      background: #ffc107;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-    .actions button:hover {
-      background: #e0a800;
+    th {
+      background-color: #007bff;
+      color: white;
     }
   </style>
 </head>
 <body>
-  <div class="panel">
-    <h2>Booking Details</h2>
-    <div class="info">
-      <label>Name:</label>
-      <p>Yash Yadav</p>
+  <h2>📋 All Bus Bookings (Admin Panel)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Date</th>
+        <th>Bus Type</th>
+        <th>Seat No</th>
+      </tr>
+    </thead>
+    <tbody id="bookingData">
+      <!-- Dynamic rows -->
+    </tbody>
+  </table>
 
-      <label>Mobile:</label>
-      <p>9876543210</p>
+  <script>
+    const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
-      <label>From:</label>
-      <p>Indore</p>
-
-      <label>To:</label>
-      <p>Bhopal</p>
-
-      <label>Date of Journey:</label>
-      <p>2025-07-21</p>
-
-      <label>Bus Type:</label>
-      <p>AC Sleeper</p>
-
-      <label>Seat Number:</label>
-      <p>21A</p>
-
-      <label>Payment:</label>
-      <p style="color: green;">Paid</p>
-
-      <label>Agent:</label>
-      <p>TravelGo Agent #204</p>
-    </div>
-
-    <div class="actions">
-      <button onclick="alert('Ticket Downloaded')">Download Ticket</button>
-      <button onclick="alert('Booking Cancelled')">Cancel</button>
-    </div>
-  </div>
+    const tbody = document.getElementById("bookingData");
+    if (bookings.length === 0) {
+      tbody.innerHTML = "<tr><td colspan='7'>No bookings found.</td></tr>";
+    } else {
+      bookings.forEach(b => {
+        const row = `<tr>
+          <td>${b.name}</td>
+          <td>${b.mobile}</td>
+          <td>${b.from}</td>
+          <td>${b.to}</td>
+          <td>${b.date}</td>
+          <td>${b.busType}</td>
+          <td>${b.seat}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+      });
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customer Panel - TravelGo</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #e9ecef;
+      margin: 0;
+    }
+    .panel {
+      max-width: 600px;
+      background: #fff;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    h2 {
+      text-align: center;
+      color: #007bff;
+    }
+    .info {
+      margin: 20px 0;
+    }
+    .info label {
+      font-weight: bold;
+    }
+    .info p {
+      margin: 5px 0;
+    }
+    .actions button {
+      padding: 10px 20px;
+      background: #ffc107;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+    .actions button:hover {
+      background: #e0a800;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>Booking Details</h2>
+    <div class="info">
+      <label>Name:</label>
+      <p>Yash Yadav</p>
+
+      <label>Mobile:</label>
+      <p>9876543210</p>
+
+      <label>From:</label>
+      <p>Indore</p>
+
+      <label>To:</label>
+      <p>Bhopal</p>
+
+      <label>Date of Journey:</label>
+      <p>2025-07-21</p>
+
+      <label>Bus Type:</label>
+      <p>AC Sleeper</p>
+
+      <label>Seat Number:</label>
+      <p>21A</p>
+
+      <label>Payment:</label>
+      <p style="color: green;">Paid</p>
+
+      <label>Agent:</label>
+      <p>TravelGo Agent #204</p>
+    </div>
+
+    <div class="actions">
+      <button onclick="alert('Ticket Downloaded')">Download Ticket</button>
+      <button onclick="alert('Booking Cancelled')">Cancel</button>
+    </div>
+  </div>
+</body>
+</html>

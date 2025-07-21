@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Bus Booking - TravelGo</title>
   <style>
     body {
@@ -39,17 +39,6 @@
     button:hover {
       background-color: #218838;
     }
-    #confirmation {
-      display: none;
-      text-align: center;
-    }
-    #confirmation h3 {
-      color: #28a745;
-    }
-    .info {
-      text-align: left;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
@@ -67,18 +56,12 @@
         <option value="Non-AC">Non-AC</option>
         <option value="Sleeper">Sleeper</option>
       </select>
-      <p><strong>Booking Charges:</strong> ₹200</p>
       <button type="submit">Pay & Confirm Booking</button>
     </form>
-
-    <div id="confirmation">
-      <h3>🎉 Thank You! Your Booking is Confirmed.</h3>
-      <div class="info" id="details"></div>
-    </div>
   </div>
 
   <script>
-    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    document.getElementById("bookingForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
       const form = new FormData(e.target);
@@ -90,27 +73,18 @@
       const busType = form.get("busType");
       const seat = generateSeatNumber();
 
-      const confirmPay = confirm("Proceed to pay ₹200 for booking?");
-      if (!confirmPay) return;
-
-      // ✅ Save to localStorage
-      let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      // Save booking to localStorage
+      const bookings = JSON.parse(localStorage.getItem("bookings")) || [];
       bookings.push({ name, mobile, from, to, date, busType, seat });
       localStorage.setItem("bookings", JSON.stringify(bookings));
 
-      // ✅ Show confirmation
-      document.getElementById("bookingForm").style.display = "none";
-      document.getElementById("confirmation").style.display = "block";
-      document.getElementById("details").innerHTML = `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Mobile:</strong> ${mobile}</p>
-        <p><strong>From:</strong> ${from}</p>
-        <p><strong>To:</strong> ${to}</p>
-        <p><strong>Date:</strong> ${date}</p>
-        <p><strong>Bus Type:</strong> ${busType}</p>
-        <p><strong>Seat Number:</strong> ${seat}</p>
-        <p style="color: green; font-weight: bold;">✅ ₹200 Payment Received</p>
-      `;
+      alert("Seat Number Allotted: " + seat + "\nRedirecting to payment...");
+
+      // Redirect to Razorpay payment link
+      window.open("https://rzp.io/rzp/iWUgBj6", "_blank");
+
+      // Optional: Reset form
+      e.target.reset();
     });
 
     function generateSeatNumber() {
